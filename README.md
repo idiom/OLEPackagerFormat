@@ -1,8 +1,10 @@
 # OLE Packager File Format
-Research and documentation into the OLE Packagerformat.
+Research and documentation into the OLE Packager format.
 
 The Packager format is a  legacy of OLE1 and was designed as a generic OLE embedding server for inserting objects
 that don't an associated OLE server.
+
+Packager objects will be embedded or linked using the class name Package (5061636b61676500). 
 ## OLE Packager Data Format 
 ```
 
@@ -28,7 +30,7 @@ DefPathW        Variable    Original path of embedded object. (WChar)
 
 ```
 
-##Usage
+## Usage
 The script can be run against Word documents (.doc), RTF files or carved OLE10Native streams.
 python psparser.py sample1.doc
 
@@ -47,7 +49,7 @@ python psparser.py sample1.doc
   Data (SHA1):    c8671177cc462bdd6eb1a36935e885103283f7e1
 ```  
 
-###Extracting Data
+### Extracting Data
 To extract data pass the --extract switch to extract the data stream to the current directory.
 The name of the file will be the MD5 hash of the embedded data
 ```
@@ -68,8 +70,7 @@ python psparser sample2.doc --extract
 ```
 
 ## Future Research
- - Investigate VBA Tail var
- - Identify what generates values in [22:26]
+ - Confirm UType field values
 
 ## References
  - https://securingtomorrow.mcafee.com/mcafee-labs/dropping-files-temp-folder-raises-security-concerns/ 
