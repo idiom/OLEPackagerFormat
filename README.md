@@ -7,24 +7,24 @@ that don't an associated OLE server.
 ```
 
 
-Name        Length      Description
+Name            Length      Description
 -------------------------------------------------------------------------------
-Header	    4           Stream Header always set to 0200
-Label	    Variable	Label of embedded object defaulted to filename. (Null Terminated)
-OrgPath	    Variable	Original path of embedded object. (Null Terminated)
-UType	    8	        Unknown – Possibly a FormatId
+Header	        4           Stream Header always set to 0200
+Label	        Variable    Label of embedded object defaulted to filename. (Null Terminated)
+OrgPath	        Variable    Original path of embedded object. (Null Terminated)
+UType	        8           Unknown – Possibly a FormatId
                                 – Set to 00000300 for embedded objects
                                 – Set to 00000100 for linked objects
-DataPathLen	8	        Length of DataPath
-DataPath	Variable	Extract Path and file name defaulted to %localappdata%/Temp of the source system. (Null Terminated)
-DataLen	    8	        Length of embedded data.
-Data	    Variable	Embedded Data
-OrgPathWLen	8           Length of OrgFileW
-OrgPathW	Variable	Original path of embedded object. (WChar)
-LabelLen	8	        Length of LabelW
-LabelW	Variable        Label of embedded object defaulted to filename. (WChar)
-DefPathWLen	8	        Length of OrgPathW
-DefPathW	Variable	Original path of embedded object. (WChar)
+DataPathLen     8           Length of DataPath
+DataPath        Variable    Extract Path and file name defaulted to %localappdata%/Temp of the source system. (Null Terminated)
+DataLen	        8           Length of embedded data.
+Data	        Variable    Embedded Data
+OrgPathWLen     8           Length of OrgFileW
+OrgPathW        Variable    Original path of embedded object. (WChar)
+LabelLen        8           Length of LabelW
+LabelW	        Variable    Label of embedded object defaulted to filename. (WChar)
+DefPathWLen     8           Length of OrgPathW
+DefPathW        Variable    Original path of embedded object. (WChar)
 
 ```
 
