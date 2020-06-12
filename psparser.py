@@ -327,7 +327,7 @@ class RTFDoc(object):
         except TypeError:
             return value
 
-    def scan(self, extract):
+    def scan(self, extract, use_label=False):
         """
         Scan the file for embedded objects.
         :return:
@@ -396,7 +396,7 @@ class RTFDoc(object):
                 print pkgobj
 
                 if extract:
-                    extract_object(pkgobj)
+                    extract_object(pkgobj, use_label)
 
             else:
                 print ' [*] Unsupported Object Format..'
@@ -447,7 +447,7 @@ def process_olefile(oleobject):
         print ' [!] Error Processing OLE :: %s' % io
 
 
-def process_file(filename, extract):
+def process_file(filename, extract, use_label):
     pkg_objects = []
     if olefile.isOleFile(filename):
         print ' [*] File is an OLE file...'
@@ -455,7 +455,7 @@ def process_file(filename, extract):
 
         if extract:
             for pkg_object in pkg_objects:
-                extract_object(pkg_object)
+                extract_object(pkg_object, use_label)
 
     elif isstream(filename):
         with open(filename, 'rb') as f:
@@ -467,7 +467,7 @@ def process_file(filename, extract):
             print pkg_obj
 
             if extract:
-                extract_object(pkg_obj)
+                extract_object(pkg_obj, use_label)
     else:
         with open(filename, 'rb') as f:
             file_data = f.read()
@@ -481,21 +481,26 @@ def process_file(filename, extract):
                     pkg_objects = process_olefile(zf.read(name))
                     if extract:
                         for pkg_object in pkg_objects:
-                            extract_object(pkg_object)
+                            extract_object(pkg_object, use_label)
 
         else:
             # Treat the file as an rtf doc
             rd = RTFDoc(filename)
             print ' [*] Scanning file for embedded objects'
-            rd.scan(extract)
+            rd.scan(extract, use_label)
 
 
-def extract_object(pkg_object):
+def extract_object(pkg_object, use_label=False):
     if pkg_object:
         try:
-            print ' [*] Writing object to file :: %s' % pkg_object.gethash('md5')
-            with open(pkg_object.gethash('md5'), 'wb') as out:
-                out.write(pkg_object.Data)
+            if (pkg_object.Label is not None):
+                print ' [*] Writing object to file :: %s' % pkg_object.Label
+                with open(pkg_object.Label, 'wb') as out:
+                    out.write(pkg_object.Data)
+            else:
+                print ' [*] Writing object to file :: %s' % pkg_object.gethash('md5')
+                with open(pkg_object.gethash('md5'), 'wb') as out:
+                    out.write(pkg_object.Data)
         except Exception as e:
             print ' [!] An error occurred while writing the file :: %s' % e
     else:
@@ -509,10 +514,11 @@ def main():
                         help="The file to process. This can be an RTF file, Office document or extracted Ole10Native Stream.")
     parser.add_argument('--extract', dest='extract', action='store_true', help="Extract objects")
     parser.add_argument('--debug', dest='debug', action='store_true', help="Print debug information")
+    parser.add_argument('--use-filenames', dest='use_label', action='store_true', help="Extract file using original filename")
     args = parser.parse_args()
 
     print ' [*] Analyzing file....'
-    process_file(args.file, args.extract)
+    process_file(args.file, args.extract, args.use_label)
 
 
 if __name__ == '__main__':
