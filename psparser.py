@@ -3,7 +3,7 @@
 # -*- coding: utf8 -*- 
 
 __author__ = 'Sean Wilson'
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 
 '''
 ----------------------------------------
@@ -24,6 +24,8 @@ Changelog
  - Fixed some issues where extracting embedded objects would throw an error.
 0.0.7
  - Fix for Issue 4. Script now handles malformed or non Packager streams.
+0.0.8
+ - Add use_label option to save file using extracted filename. Thanks @techwiz2100 
 ----------------------------------------
 Copyright (c) 2018 Sean Wilson
 Permission is hereby granted, free of charge, to any person obtaining a copy
