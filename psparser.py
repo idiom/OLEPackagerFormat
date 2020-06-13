@@ -6,26 +6,7 @@ __author__ = 'Sean Wilson'
 __version__ = '0.0.8'
 
 '''
-----------------------------------------
-Changelog
-0.0.1
- - Initial Release
-0.0.2
- - Fixed bug with parsing raw RTF files.
-0.0.3
- - Fixed Issue #1 Parsing raw RTF files.
- - Added better support to handle malformed RTF files
-0.0.4
- - Fixed issue with malformed or nonexistent wide string properties.
-0.0.5
- - Added support to process zip files (OOXML) from the command line tool.
-0.0.6
- - Added a check for encrypted documents by looking for EncryptedPackage within the stream names.
- - Fixed some issues where extracting embedded objects would throw an error.
-0.0.7
- - Fix for Issue 4. Script now handles malformed or non Packager streams.
-0.0.8
- - Add use_label option to save file using extracted filename. Thanks @techwiz2100 
+License 
 ----------------------------------------
 Copyright (c) 2018 Sean Wilson
 Permission is hereby granted, free of charge, to any person obtaining a copy
