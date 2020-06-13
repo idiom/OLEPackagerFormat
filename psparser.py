@@ -493,7 +493,7 @@ def process_file(filename, extract, use_label):
 def extract_object(pkg_object, use_label=False):
     if pkg_object:
         try:
-            if (pkg_object.Label is not None):
+            if use_label and pkg_object.Label is not None:
                 print ' [*] Writing object to file :: %s' % pkg_object.Label
                 with open(pkg_object.Label, 'wb') as out:
                     out.write(pkg_object.Data)
